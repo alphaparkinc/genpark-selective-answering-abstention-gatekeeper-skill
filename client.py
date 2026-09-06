@@ -28,6 +28,11 @@ class SelectiveGatekeeper:
         self.answered_queries = 0
         self.abstained_queries = 0
 
+    @property
+    def running_coverage(self) -> float:
+        """Calculate running coverage proportion of queries answered autonomously."""
+        return self.answered_queries / self.total_queries if self.total_queries > 0 else 0.0
+
     def evaluate_action(self, confidence: float, predicted_action: Any, context_metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
         """
         Decide whether to execute action or abstain based on expected utility.
@@ -53,15 +58,13 @@ class SelectiveGatekeeper:
             self.abstained_queries += 1
             reason = "Unacceptable error risk; task escalated to human operator."
 
-        coverage = self.answered_queries / self.total_queries if self.total_queries > 0 else 0.0
-
         return {
             "decision": decision,
             "confidence": confidence,
             "predicted_action": predicted_action,
             "expected_cost_answer": cost_answer,
             "expected_cost_abstain": cost_abstain,
-            "running_coverage": coverage,
+            "running_coverage": self.running_coverage,
             "reason": reason
         }
 
