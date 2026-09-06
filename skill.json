@@ -1,0 +1,15 @@
+{
+  "name": "genpark-selective-answering-abstention-gatekeeper-skill",
+  "version": "1.0.0",
+  "description": "Risk-coverage trade-off optimization; controls agent abstention, fallback escalation, and human-in-the-loop triggers under dynamic risk budgets.",
+  "author": "GenPark AI",
+  "license": "Apache-2.0",
+  "dependencies": [],
+  "keywords": [
+    "selective-answering",
+    "abstention-gatekeeper",
+    "risk-coverage",
+    "human-in-the-loop",
+    "fallback-routing"
+  ]
+}
